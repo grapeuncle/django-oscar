@@ -1,7 +1,8 @@
 import logging
 
 from django.http import Http404, HttpResponseRedirect, HttpResponseBadRequest
-from django.core.urlresolvers import reverse
+from django.core.urlresolvers import reverse, reverse_lazy
+
 from django.contrib import messages
 from django.contrib.auth import login
 from django.db.models import get_model
@@ -47,6 +48,7 @@ class IndexView(CheckoutSessionMixin, FormView):
     """
     template_name = 'checkout/gateway.html'
     form_class = GatewayForm
+    success_url = reverse_lazy('checkout:shipping-address')
 
     def get(self, request, *args, **kwargs):
         # We redirect immediately to shipping address stage if the user is
@@ -66,19 +68,24 @@ class IndexView(CheckoutSessionMixin, FormView):
         return kwargs
 
     def form_valid(self, form):
-        if form.is_guest_checkout():
+        if form.is_guest_checkout() or form.is_new_account_checkout():
             email = form.cleaned_data['username']
             self.checkout_session.set_guest_email(email)
+
+            if form.is_new_account_checkout():
+                self.success_url = "%s?next=%s" % (reverse('customer:register'),
+                                                   reverse('checkout:shipping-address'))
         else:
             user = form.get_user()
             login(self.request, user)
+
         return self.get_success_response()
 
     def get_success_response(self):
         return HttpResponseRedirect(self.get_success_url())
 
     def get_success_url(self):
-        return reverse('checkout:shipping-address')
+        return self.success_url
 
 
 # ================
