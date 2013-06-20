@@ -9,6 +9,15 @@ upgrade:
 	pip install --upgrade -r requirements.txt --use-mirrors
 	python setup.py develop --upgrade
 
+scraper: install
+	-rm -f sites/scraperShop/db.sqlite
+	# Create database
+	sites/scraperShop/manage.py syncdb --noinput
+	sites/scraperShop/manage.py migrate
+	python sites/scraperShop/manage.py runserver
+	# Import some fixtures
+
+
 sandbox: install
 	-rm -f sites/sandbox/db.sqlite
 	# Create database

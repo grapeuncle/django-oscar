@@ -45,3 +45,9 @@ settings_local.py
 /sites/demo/public/
 /sites/demo/whoosh_index/
 /sites/demo/logs/
+/sites/scraperShop/*.sqlite
+/sites/scraperShop/assets/
+/sites/scraperShop/public/
+/sites/scraperShop/whoosh_index/
+/sites/scraperShop/logs/
+
