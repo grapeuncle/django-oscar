@@ -14,7 +14,9 @@ scraper: install
 	# Create database
 	sites/scraperShop/manage.py syncdb --noinput
 	sites/scraperShop/manage.py migrate
-	python sites/scraperShop/manage.py runserver
+	sites/scraperShop/manage.py loaddata sites/_fixtures/auth.json 
+	sites/scraperShop/manage.py oscar_import_catalogue sites/scraperShop/fixtures/scraper.csv
+	python sites/scraperShop/manage.py runserver localhost:9000
 	# Import some fixtures
 
 
