@@ -1,0 +1,24 @@
+[
+    {
+        "pk": 4, 
+        "model": "catalogue.productclass", 
+        "fields": {
+            "track_stock": false, 
+            "options": [], 
+            "requires_shipping": false, 
+            "name": "web record", 
+            "slug": "web record"
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "catalogue.productclass", 
+        "fields": {
+            "track_stock": false, 
+            "options": [], 
+            "requires_shipping": false, 
+            "name": "scraper", 
+            "slug": "scraper"
+        }
+    }
+]
