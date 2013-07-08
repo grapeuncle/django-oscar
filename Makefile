@@ -15,7 +15,9 @@ scraper: install
 	sites/scraperShop/manage.py syncdb --noinput
 	sites/scraperShop/manage.py migrate
 	sites/scraperShop/manage.py loaddata sites/_fixtures/auth.json 
-	sites/scraperShop/manage.py oscar_import_catalogue sites/scraperShop/fixtures/scraper.csv
+	sites/scraperShop/manage.py loaddata sites/scraperShop/fixtures/product-classes.json
+	sites/scraperShop/manage.py create_products --class=scraper sites/scraperShop/fixtures/scraper.csv
+	sites/scraperShop/manage.py import_product_images  sites/scraperShop/fixtures/images/products/scraper
 	python sites/scraperShop/manage.py runserver localhost:9000
 	# Import some fixtures
 
