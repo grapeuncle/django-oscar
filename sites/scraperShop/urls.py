@@ -4,7 +4,7 @@ from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf.urls.static import static
 
-from oscar.app import shop
+from app import application
 
 # These simply need to be imported into this namespace.  Ignore the PEP8
 # warning that they aren't used.
@@ -16,7 +16,7 @@ urlpatterns = patterns('',
     (r'^admin/', include(admin.site.urls)),
     # Custom functionality to allow dashboard users to be created
     #(r'^gateway/', include('apps.gateway.urls')),
-    (r'', include(shop.urls)),
+    (r'', include(application.urls)),
 )
 
 # Allow rosetta to be used to add translations

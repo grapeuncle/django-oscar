@@ -267,10 +267,11 @@ INSTALLED_APPS = [
     'compressor',
     'apps.user',        # For profile testing
     'apps.bigbang',
+    'apps.catalogue'
     #'apps.gateway',     # For allowing dashboard access
 ]
 from oscar import get_core_apps
-INSTALLED_APPS = INSTALLED_APPS + get_core_apps()
+INSTALLED_APPS = INSTALLED_APPS + get_core_apps(['apps.catalogu'])
 
 # Add Oscar's custom auth backend so users can sign in using their email
 # address.
