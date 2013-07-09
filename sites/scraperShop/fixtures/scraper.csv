@@ -1,4 +1,4 @@
-finacial,finacial,1,"yahoo finacial","yahoo finacial provide trade data for stock all oever the worlds"
-shoping,shoping,2,amazone,"amazone provide all kinds of goods as book, clothes and etc."
-shoping,shoping,3,ebay,"ebay is a C2C e-commerce site"
-
+Category, UPC, titile, description, price
+finacial,1,"yahoo finacial","yahoo finacial provide trade data for stock all oever the worlds",10
+shoping,2,amazone,"amazone provide all kinds of goods as book, clothes and etc.",50
+shoping,3,ebay,"ebay is a C2C e-commerce site",50

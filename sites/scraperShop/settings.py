@@ -266,6 +266,7 @@ INSTALLED_APPS = [
     'rosetta',          # For i18n testing
     'compressor',
     'apps.user',        # For profile testing
+    'apps.bigbang',
     #'apps.gateway',     # For allowing dashboard access
 ]
 from oscar import get_core_apps
