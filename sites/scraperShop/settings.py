@@ -83,6 +83,9 @@ USE_I18N = True
 # calendars according to the current locale
 USE_L10N = True
 
+SCRAPERS_ROOT = location("public/scrapers")
+SCRAPERS_URL = '/scrapers/'
+
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
 MEDIA_ROOT = location("public/media")
@@ -99,7 +102,9 @@ MEDIA_URL = '/media/'
 
 STATIC_URL = '/static/'
 STATIC_ROOT = location('public/static')
-STATICFILES_DIRS = ()
+STATICFILES_DIRS = (
+    os.path.join(os.path.dirname(__file__), "static"),
+)
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',

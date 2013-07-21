@@ -14,8 +14,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     (r'^admin/', include(admin.site.urls)),
-    # Custom functionality to allow dashboard users to be created
-    #(r'^gateway/', include('apps.gateway.urls')),
+    (r'^scraper/', include('apps.scraper.urls')),
     (r'', include(application.urls)),
 )
 

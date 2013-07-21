@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Wikipedia Image Search</title>
+    <meta http-equiv="cleartype" content="on">
+    <link rel="stylesheet" href="//scraperwiki.com/vendor/style/bootstrap.min.css">
+    <link rel="stylesheet" href="//scraperwiki.com/style/scraperwiki.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+    <script src="//scraperwiki.com/vendor/js/bootstrap.min.js"></script>
+    <script src="//scraperwiki.com/js/scraperwiki.js"></script>
+    <script>
+      $(function() {
+          var execSuccess = function(execOutput) {
+            $("#title").val(execOutput);
+            $('#submit').removeClass('loading')
+          }
+          var exec = function(cmd, success, error) { 
+              options = {
+                  url: "" + window.location.protocol + "//" + window.location.host + "/scraper/run/",
+                  type: "POST",
+                  dataType: "text",
+                  data: {
+                      cmd: cmd
+                  }
+              };
+              if (success != null) {
+                  options.success = success;
+              }
+              if (error != null) {
+                  options.error = error;
+              }
+
+              return $.ajax(options);
+          }
+          $('#submit').on('click', function() {
+            $(this).addClass('loading').html('Searching…')
+            term = $('#q').val()
+            exec("test.py '" + term + "'", execSuccess)
+          })
+      })
+    </script>
+  </head>
+  <body style="text-align: center">
+    <h1 id="title">Search Wikipedia Images bbc</h1>
+    <div class="input-append">
+      <input type="text" name="q" size="80" id="q" placeholder="Search term, eg: cats">
+      <button class="btn btn-primary" type="submit" id="submit">Search</button>
+    </div>
+  </body>
+</html>

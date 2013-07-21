@@ -18,12 +18,13 @@ class Importer(object):
         product_class = models.ProductClass.objects.get(
             name=product_class_name)
 
-        for row in CsvUnicodeReader(open(filepath, 'r')):
-            if row[0] == 'Category':
+        for row in CsvUnicodeReader(open(filepath, 'r'), quotechar='"'):
+            if row[0] == 'category':
+                attribute_codes = row[5:]
                 continue
-            self.create_product(product_class,   row)
+            self.create_product(product_class, attribute_codes,  row)
 
-    def create_product(self, product_class, row):
+    def create_product(self, product_class, attribute_codes, row):
         category, upc, title, description, price = row[0:5]
 
         # Create product
@@ -40,6 +41,10 @@ class Importer(object):
         product.description = description
         product.product_class = product_class
         product.price = D(price)
+
+        # Attributes
+        for code, value in zip(attribute_codes, row[5:]):
+            setattr(product.attr, code, value)
 
         product.save()
 
